@@ -46,16 +46,20 @@ settings:
 # "The record": the ledger of checked figures. Set isTotal: true on a row that
 # adds up the rows above it. Update recordCheckedOn (above) when you recheck.
 record:
-  - label: "Learners on Udemy"
+  - label: "Udemy learners, Manish Gupta"
     value: "146,065"
     isTotal: false
     sourceUrl: "https://www.udemy.com/user/manish-224/"
+  - label: "Udemy learners, Hotel Management School"
+    value: "58,536"
+    isTotal: false
+    sourceUrl: "https://www.udemy.com/user/hotel-management-school/"
   - label: "Learners on Alison"
     value: "114,925"
     isTotal: false
     sourceUrl: "https://alison.com/publisher/manish-gupta"
-  - label: "Enrolments, Udemy and Alison"
-    value: "260,990"
+  - label: "Enrolments across Udemy and Alison"
+    value: "319,526"
     isTotal: true
     sourceUrl: null
   - label: "Courses on Coursera"
@@ -162,8 +166,8 @@ platforms:
     summary: "146,065 learners and 2,368 reviews, from hotel finance to financial analysis"
     url: "https://www.udemy.com/user/manish-224/"
   - platform: "Udemy"
-    summary: "Hotel Management School profile · [LEARNERS AND COURSES]"
-    url: null
+    summary: "Hotel Management School: 58,536 learners and 1,197 reviews on hotel management courses"
+    url: "https://www.udemy.com/user/hotel-management-school/"
   - platform: "Coursera"
     summary: "19 courses with Starweaver, from Mastering Hotel Financials to GenAI for Financial Forecasting"
     url: "https://www.coursera.org/instructor/~139904014"

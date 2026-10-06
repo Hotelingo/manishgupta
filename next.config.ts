@@ -8,6 +8,10 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  images: {
+    // Book and guide covers come from the book site's public storage.
+    remotePatterns: [new URL("https://lriyamltlgbrhsocyzrv.supabase.co/storage/v1/object/public/**")],
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

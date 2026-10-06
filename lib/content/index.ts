@@ -3,8 +3,8 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { cache } from "react";
 import { parse } from "yaml";
-import { bookUrl } from "@/lib/site";
-import type { Course, SiteContent } from "./types";
+import { IMAGE_HOST, bookUrl } from "@/lib/site";
+import type { SiteContent } from "./types";
 
 // All site content comes from content/site.yaml, read when the site is built.
 // No database: to change the site, edit that file and commit. A mistake in the
@@ -55,6 +55,33 @@ function oneOf<T extends string>(o: Obj, key: string, allowed: readonly T[], whe
   return v as T;
 }
 
+function link(o: Obj, key: string, where: string): string | null {
+  const v = optional(o, key, where);
+  if (v && !/^(https:\/\/|\/|#)/.test(v)) {
+    throw new ContentError(`${where}.${key}`, "a link must start with https://, / (a page on this site) or # (a section)");
+  }
+  return v;
+}
+
+function count(o: Obj, key: string, where: string): number | null {
+  const v = o[key];
+  if (v === null || v === undefined) return null;
+  if (typeof v !== "number" || !Number.isInteger(v) || v < 0) {
+    throw new ContentError(`${where}.${key}`, "must be a whole number without commas or quotes, e.g. 146065, or null");
+  }
+  return v;
+}
+
+function image(o: Obj, key: string, where: string): string | null {
+  const v = optional(o, key, where);
+  if (v && !v.startsWith("/images/") && !v.startsWith(IMAGE_HOST)) {
+    throw new ContentError(`${where}.${key}`, "images must be uploaded to public/images (write \"/images/name.jpg\") or come from the book site's storage");
+  }
+  return v;
+}
+
+const COURSE_PLATFORMS = ["Udemy", "Coursera", "Alison"] as const;
+
 export function loadContent(source: string): SiteContent {
   let raw: unknown;
   try {
@@ -64,8 +91,23 @@ export function loadContent(source: string): SiteContent {
   }
   const root = obj(raw, "file");
   const s = obj(root.settings, "settings");
-  const topics = s.speakingTopics;
-  if (!Array.isArray(topics)) throw new ContentError("settings.speakingTopics", "expected a list");
+  const st = obj(root.story, "story");
+
+  const platforms = arr(root.platforms, "platforms").map((r, i) => ({
+    platform: text(r, "platform", `platforms[${i + 1}]`),
+    label: optional(r, "label", `platforms[${i + 1}]`) ?? text(r, "platform", `platforms[${i + 1}]`),
+    summary: text(r, "summary", `platforms[${i + 1}]`),
+    url: link(r, "url", `platforms[${i + 1}]`),
+  }));
+  const profileFor = (platform: string) => platforms.find((p) => p.platform === platform && p.url)?.url ?? null;
+
+  const reach = arr(root.reach, "reach").map((r, i) => {
+    const w = `reach[${i + 1}]`;
+    const learners = count(r, "learners", w);
+    if (learners === null) throw new ContentError(`${w}.learners`, "is missing");
+    return { label: text(r, "label", w), learners, sourceUrl: link(r, "sourceUrl", w) };
+  });
+  if (reach.length < 1 || reach.length > 4) throw new ContentError("reach", "the chart shows between one and four platforms");
 
   return {
     settings: {
@@ -74,25 +116,56 @@ export function loadContent(source: string): SiteContent {
       heroEmphasis: text(s, "heroEmphasis", "settings"),
       heroAfter: text(s, "heroAfter", "settings"),
       heroIntro: text(s, "heroIntro", "settings"),
+      portraitUrl: image(s, "portraitUrl", "settings"),
+      introVideoUrl: link(s, "introVideoUrl", "settings"),
       nowCaption: text(s, "nowCaption", "settings"),
-      portraitUrl: optional(s, "portraitUrl", "settings"),
-      recordCheckedOn: text(s, "recordCheckedOn", "settings"),
+      figuresCheckedOn: text(s, "figuresCheckedOn", "settings"),
       aboutHeading: text(s, "aboutHeading", "settings"),
       aboutIntro: text(s, "aboutIntro", "settings"),
       contactEmail: text(s, "contactEmail", "settings"),
-      linkedinUrl: optional(s, "linkedinUrl", "settings"),
-      speakingTopics: topics.map((t) => String(t)),
+      linkedinUrl: link(s, "linkedinUrl", "settings"),
+      notesHeading: text(s, "notesHeading", "settings"),
+      notesText: text(s, "notesText", "settings"),
     },
-    record: arr(root.record, "record").map((r, i) => ({
-      label: text(r, "label", `record[${i + 1}]`),
-      value: text(r, "value", `record[${i + 1}]`),
-      isTotal: flag(r, "isTotal"),
-      sourceUrl: optional(r, "sourceUrl", `record[${i + 1}]`),
-    })),
+    reach,
+    proof: arr(root.proof, "proof").map((r, i) => {
+      const w = `proof[${i + 1}]`;
+      return { value: text(r, "value", w), label: text(r, "label", w), icon: oneOf(r, "icon", ["years", "book", "award"] as const, w) };
+    }),
     disciplines: arr(root.disciplines, "disciplines").map((r, i) => ({
       label: text(r, "label", `disciplines[${i + 1}]`),
       proof: text(r, "proof", `disciplines[${i + 1}]`),
     })),
+    story: {
+      title: text(st, "title", "story"),
+      beats: arr(st.beats, "story.beats").map((r, i) => {
+        const w = `story.beats[${i + 1}]`;
+        return { when: text(r, "when", w), title: text(r, "title", w), text: text(r, "text", w) };
+      }),
+    },
+    waysIn: arr(root.waysIn, "waysIn").map((r, i) => {
+      const w = `waysIn[${i + 1}]`;
+      return {
+        step: text(r, "step", w),
+        title: text(r, "title", w),
+        text: text(r, "text", w),
+        ctaLabel: text(r, "ctaLabel", w),
+        ctaUrl: link(r, "ctaUrl", w) ?? "#notes",
+        style: oneOf(r, "style", ["light", "dark"] as const, w),
+      };
+    }),
+    cohorts: arr(root.cohorts, "cohorts").map((r, i) => {
+      const w = `cohorts[${i + 1}]`;
+      return {
+        audience: text(r, "audience", w),
+        title: text(r, "title", w),
+        promise: text(r, "promise", w),
+        weeks: optional(r, "weeks", w),
+        nextCohort: optional(r, "nextCohort", w),
+        videoUrl: link(r, "videoUrl", w),
+        theme: oneOf(r, "theme", ["teal", "navy", "wine", "olive"] as const, w),
+      };
+    }),
     offers: arr(root.offers, "offers").map((r, i) => {
       const w = `offers[${i + 1}]`;
       return {
@@ -102,7 +175,7 @@ export function loadContent(source: string): SiteContent {
         formats: text(r, "formats", w),
         status: oneOf(r, "status", ["open", "waitlist"] as const, w),
         ctaLabel: text(r, "ctaLabel", w),
-        ctaUrl: text(r, "ctaUrl", w),
+        ctaUrl: link(r, "ctaUrl", w) ?? "#notes",
         waitlistNote: optional(r, "waitlistNote", w),
       };
     }),
@@ -113,7 +186,7 @@ export function loadContent(source: string): SiteContent {
         audience: text(r, "audience", w),
         dateLabel: text(r, "dateLabel", w),
         status: oneOf(r, "status", ["upcoming", "recorded"] as const, w),
-        url: optional(r, "url", w),
+        url: link(r, "url", w),
       };
     }),
     projects: arr(root.projects, "projects").map((r, i) => {
@@ -122,25 +195,25 @@ export function loadContent(source: string): SiteContent {
         name: text(r, "name", w),
         status: oneOf(r, "status", ["idea", "prototype", "beta", "live"] as const, w),
         summary: optional(r, "summary", w) ?? "",
-        url: optional(r, "url", w),
+        url: link(r, "url", w),
         urlLabel: optional(r, "urlLabel", w),
-        caseStudyUrl: optional(r, "caseStudyUrl", w),
+        caseStudyUrl: link(r, "caseStudyUrl", w),
         featured: flag(r, "featured"),
       };
     }),
-    platforms: arr(root.platforms, "platforms").map((r, i) => ({
-      platform: text(r, "platform", `platforms[${i + 1}]`),
-      summary: text(r, "summary", `platforms[${i + 1}]`),
-      url: optional(r, "url", `platforms[${i + 1}]`),
-    })),
+    platforms,
     courses: arr(root.courses, "courses").map((r, i) => {
       const w = `courses[${i + 1}]`;
+      const platform = oneOf(r, "platform", COURSE_PLATFORMS, w);
       return {
-        platform: text(r, "platform", w),
+        platform,
+        topic: text(r, "topic", w),
         title: text(r, "title", w),
-        stats: text(r, "stats", w),
-        referralUrl: optional(r, "referralUrl", w),
-        publicUrl: optional(r, "publicUrl", w),
+        learners: count(r, "learners", w),
+        rating: optional(r, "rating", w),
+        featured: flag(r, "featured"),
+        href: link(r, "referralUrl", w) ?? link(r, "publicUrl", w) ?? profileFor(platform),
+        videoUrl: link(r, "videoUrl", w),
       };
     }),
     books: arr(root.books, "books").map((r, i) => {
@@ -151,21 +224,25 @@ export function loadContent(source: string): SiteContent {
         title: text(r, "title", w),
         summary: text(r, "summary", w),
         theme: oneOf(r, "theme", ["reporting", "budgeting", "playbook", "leadership", "independent", "ai"] as const, w),
-        url: optional(r, "url", w) ?? bookUrl(slug),
+        url: link(r, "url", w) ?? bookUrl(slug),
+        coverUrl: image(r, "coverUrl", w),
+        videoUrl: link(r, "videoUrl", w),
       };
     }),
     guides: arr(root.guides, "guides").map((r, i) => {
       const w = `guides[${i + 1}]`;
-      return {
-        title: text(r, "title", w),
-        subtitle: text(r, "subtitle", w),
-        url: text(r, "url", w),
-      };
+      const url = link(r, "url", w);
+      if (!url) throw new ContentError(`${w}.url`, "is missing");
+      return { title: text(r, "title", w), subtitle: text(r, "subtitle", w), url, coverUrl: image(r, "coverUrl", w) };
     }),
-    appearances: arr(root.appearances, "appearances").map((r, i) => ({
+    speakingTopics: arr(root.speakingTopics, "speakingTopics").map((r, i) => {
+      const w = `speakingTopics[${i + 1}]`;
+      return { tag: text(r, "tag", w), title: text(r, "title", w), text: text(r, "text", w) };
+    }),
+    appearances: arr(root.appearances ?? [], "appearances").map((r, i) => ({
       showName: text(r, "showName", `appearances[${i + 1}]`),
       linkLabel: text(r, "linkLabel", `appearances[${i + 1}]`),
-      url: optional(r, "url", `appearances[${i + 1}]`),
+      url: link(r, "url", `appearances[${i + 1}]`),
     })),
     career: arr(root.career, "career").map((r, i) => ({
       period: text(r, "period", `career[${i + 1}]`),
@@ -180,12 +257,12 @@ export function loadContent(source: string): SiteContent {
         slug,
         showName: text(r, "showName", w),
         intro: text(r, "intro", w),
-        resources: arr(r.resources, `${w}.resources`).map((x, j) => ({
-          kind: text(x, "kind", `${w}.resources[${j + 1}]`),
-          title: text(x, "title", `${w}.resources[${j + 1}]`),
-          label: text(x, "label", `${w}.resources[${j + 1}]`),
-          url: text(x, "url", `${w}.resources[${j + 1}]`),
-        })),
+        resources: arr(r.resources, `${w}.resources`).map((x, j) => {
+          const wx = `${w}.resources[${j + 1}]`;
+          const url = link(x, "url", wx);
+          if (!url) throw new ContentError(`${wx}.url`, "is missing");
+          return { kind: text(x, "kind", wx), title: text(x, "title", wx), label: text(x, "label", wx), url };
+        }),
       };
     }),
   };
@@ -193,7 +270,7 @@ export function loadContent(source: string): SiteContent {
 
 export const getContent = cache(async (): Promise<SiteContent> => loadContent(readFileSync(FILE, "utf8")));
 
-/** The link a course card uses: the instructor referral link when there is one. */
-export function courseHref(course: Course) {
-  return course.referralUrl ?? course.publicUrl;
+/** Total learners across the reach chart. */
+export function reachTotal(reach: { learners: number }[]) {
+  return reach.reduce((sum, r) => sum + r.learners, 0);
 }

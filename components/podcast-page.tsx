@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { SignupForm } from "@/components/signup-form";
 import type { PodcastPage, SiteSettings } from "@/lib/content/types";
@@ -20,8 +21,7 @@ export function PodcastLanding({ page, settings, path }: { page: PodcastPage; se
         </div>
         <div className="portrait" style={{ flex: "1 1 220px", maxWidth: 280 }}>
           {settings.portraitUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={settings.portraitUrl} alt="Manish Gupta" className="portrait__img" style={{ aspectRatio: "1 / 1", borderRadius: 4 }} />
+            <Image src={settings.portraitUrl} alt="Manish Gupta" width={900} height={1200} sizes="280px" className="portrait__img" style={{ aspectRatio: "1 / 1", borderRadius: 4 }} />
           ) : (
             <div className="portrait__placeholder" style={{ aspectRatio: "1 / 1", borderRadius: 4 }} role="img" aria-label="Portrait to be added">[ PORTRAIT ]</div>
           )}
@@ -58,11 +58,11 @@ export function PodcastLanding({ page, settings, path }: { page: PodcastPage; se
           <div style={{ flex: "1 1 380px", display: "flex", flexDirection: "column", gap: 12 }}>
             <h2 id="who-h" className="display" style={{ fontSize: 30, lineHeight: 1.15 }}>Who you just heard</h2>
             <p style={{ color: "var(--body)" }}>
-              Group CFO of a hotel, real estate and retail group, Chartered Accountant, and author of the Hotel Finance Practice Library. I teach finance people to use AI well and mentor those moving toward CFO.
+              Group CFO of a hotel, real estate and retail group, Chartered Accountant, and author of the Hotel Finance Practice Library. I teach hotel finance, operations and AI, learned in the CFO&apos;s chair and taught for yours, and mentor finance managers on their way to it.
             </p>
           </div>
           <div style={{ flex: "1 1 280px", display: "flex", flexDirection: "column", gap: 10, alignSelf: "center" }}>
-            <Link href="/#work" className="btn btn--primary">Bring me in for an AI session</Link>
+            <Link href="/#ai-lab" className="btn btn--primary">Bring me in for an AI session</Link>
             <Link href="/#work" className="btn btn--outline">Ask about mentoring</Link>
           </div>
         </div>

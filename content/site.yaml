@@ -8,26 +8,30 @@
 #   • Keep the indentation (two spaces) exactly as it is.
 #   • Text with a colon ( : ) or starting with [ or # must be in quotes.
 #   • Lists start each item with "- ".
+#   • null means "nothing here yet" (no video, no link). The site hides it.
 #   • If you make a mistake, the build stops and the live site stays as it was.
 #     Vercel's build log names the line to fix.
 #
-# Square-bracket text like [DATE] is a placeholder still to be filled in.
+# Full guide: docs/EDITING.md
 # ─────────────────────────────────────────────────────────────────────────────
 
 settings:
-  heroEyebrow: "Group CFO · Chartered Accountant · Author"
-  # The headline is: heroBefore + heroEmphasis (in italics) + heroAfter
-  heroBefore: "The CFO who has also "
-  heroEmphasis: "run the hotel"
+  heroEyebrow: "CA · Group CFO · Author · Teacher"
+  # The headline is: heroBefore + heroEmphasis (in gold italics) + heroAfter
+  heroBefore: "Hotel finance, operations and AI, "
+  heroEmphasis: "learned in the CFO's chair and taught for yours"
   heroAfter: "."
   heroIntro: >-
-    Twenty-three years across hotel finance, operations and technology, from
-    Shangri-La to Group CFO. I write the Hotel Finance Practice Library and help
-    finance teams put AI to work without losing their judgement.
+    From Shangri-La's finance office to Group CFO, running hotel operations
+    along the way. My books, courses and cohorts teach what I use every week:
+    finance, operations and AI that change decisions, not just report them.
+  # Photo in public/images/. A 4:5 or 3:4 portrait works best.
+  portraitUrl: "/images/manish-gupta.webp"
+  # A YouTube or Vimeo link. When set, a "Watch the 60-second intro" button appears.
+  introVideoUrl: null
   nowCaption: "Group CFO, CHIC, NAIA & Muzuri · hotels, real estate and retail, DRC"
-  # Upload the photo to public/images/ and put its path here, e.g. /images/portrait.jpg
-  portraitUrl: null
-  recordCheckedOn: "6 Oct 2026"
+  # Update this date when you recheck the figures under "reach" and "proof".
+  figuresCheckedOn: "6 Oct 2026"
   aboutHeading: "Accountant by training, operator by habit."
   aboutIntro: >-
     I am a Chartered Accountant and Company Secretary with 23 years in finance:
@@ -37,58 +41,131 @@ settings:
     as a decision system: clear numbers, useful analysis, accountability and action.
   contactEmail: "[hello@camanishgupta.com]"
   linkedinUrl: null
-  speakingTopics:
-    - "How finance teams can use AI without losing judgement"
-    - "From reporting numbers to influencing decisions"
-    - "What hospitality teaches us about operating discipline"
-    - "Turning experience into books, courses and tools"
+  notesHeading: "One email a month from the CFO's desk to yours."
+  notesText: "One finance idea, one AI workflow, one lesson from hotels, plus new cohort dates first. Hotel owners also get the free First Budget template."
 
-# "The record": the ledger of checked figures. Set isTotal: true on a row that
-# adds up the rows above it. Update recordCheckedOn (above) when you recheck.
-record:
-  - label: "Udemy learners, Manish Gupta"
-    value: "146,065"
-    isTotal: false
+# The bar chart under the hero: learners on each platform. The total is added
+# up automatically. Up to four platforms, in the order you want them shown.
+reach:
+  - label: "Udemy · Manish Gupta"
+    learners: 146065
     sourceUrl: "https://www.udemy.com/user/manish-224/"
-  - label: "Udemy learners, Hotel Management School"
-    value: "58,536"
-    isTotal: false
-    sourceUrl: "https://www.udemy.com/user/hotel-management-school/"
-  - label: "Learners on Alison"
-    value: "114,925"
-    isTotal: false
+  - label: "Alison"
+    learners: 114925
     sourceUrl: "https://alison.com/publisher/manish-gupta"
-  - label: "Learners on Coursera, 19 courses"
-    value: "73,306"
-    isTotal: false
+  - label: "Coursera · 19 courses"
+    learners: 73306
     sourceUrl: "https://www.coursera.org/instructor/~139904014"
-  - label: "Enrolments across Udemy, Alison and Coursera"
-    value: "392,832"
-    isTotal: true
-    sourceUrl: null
-  - label: "Years in finance, 17 of them in hotels"
-    value: "23"
-    isTotal: false
-    sourceUrl: null
-  - label: "Hotel Finance Practice Library"
-    value: "5 books · 6 guides"
-    isTotal: false
-    sourceUrl: "https://book.ehotelmanagementschool.com"
-  - label: "Recognition"
-    value: "Top 10 CFOs in Asia, 2024"
-    isTotal: false
-    sourceUrl: null
+  - label: "Udemy · Hotel Management School"
+    learners: 58536
+    sourceUrl: "https://www.udemy.com/user/hotel-management-school/"
 
-# The four areas under the hero.
+# The three tiles beside the chart. icon is "years", "book" or "award".
+proof:
+  - value: "23 years"
+    label: "in finance, 17 of them in hotels"
+    icon: "years"
+  - value: "5 books + 6 guides"
+    label: "Hotel Finance Practice Library"
+    icon: "book"
+  - value: "Top 10 CFOs"
+    label: "in Asia, 2024"
+    icon: "award"
+
+# The four areas under the chart.
 disciplines:
   - label: "Hotel finance"
     proof: "Assistant FC at Shangri-La Bangkok to Group CFO across hotels, malls and retail."
   - label: "Operations"
     proof: "Task-force Resident Manager for Shangri-La. Ran hotel operations in the CEO's absence from 2021."
-  - label: "Technology"
-    proof: "Led an ERP rollout across 15 hotels and brought in revenue management systems."
   - label: "AI"
     proof: "GenAI finance courses on Coursera. Building the Hotel Finance Workspace and close automations."
+  - label: "Technology"
+    proof: "Led an ERP rollout across 15 hotels and brought in revenue management systems."
+
+# "The story": four short steps, shown on the home page and the About page.
+story:
+  title: "Everything I teach, I learned in the CFO's chair."
+  beats:
+    - when: "Shangri-La"
+      title: "Learned it in the hotel"
+      text: "Assistant Financial Controller in Bangkok, then task-force Resident Manager."
+    - when: "CFO roles"
+      title: "Used it every month"
+      text: "CFO and then Group CFO across hotels, real estate and retail, with an ERP rollout across 15 hotels."
+    - when: "Online"
+      title: "Turned it into teaching"
+      text: "19 Coursera courses, two Udemy profiles and Alison, with 392,832 enrolments so far."
+    - when: "Your chair"
+      title: "Taught for yours"
+      text: "Books, courses and live cohorts for the finance manager heading for the CFO's chair, and the owner who needs one in it."
+
+# "Ways in": the ladder from reading a book to working one to one.
+# style is "light" or "dark". ctaUrl can be a section (#cohorts) or a page (/courses).
+waysIn:
+  - step: "Read"
+    title: "Books and guides"
+    text: "The Hotel Finance Practice Library and short decision guides."
+    ctaLabel: "Browse the library"
+    ctaUrl: "#library"
+    style: "light"
+  - step: "Learn · self-paced"
+    title: "Online courses"
+    text: "Over 390,000 enrolments on Udemy, Coursera and Alison."
+    ctaLabel: "Find a course"
+    ctaUrl: "/courses"
+    style: "light"
+  - step: "Learn · live"
+    title: "Signature cohorts"
+    text: "Small live groups on AI for finance, leadership and decisions."
+    ctaLabel: "See the cohorts"
+    ctaUrl: "#cohorts"
+    style: "light"
+  - step: "For teams"
+    title: "AI sessions"
+    text: "Talks and workshops on AI for analysis, forecasting and reporting."
+    ctaLabel: "Plan a session"
+    ctaUrl: "#ai-lab"
+    style: "dark"
+  - step: "One to one"
+    title: "Mentoring and advisory"
+    text: "Mentoring for future CFOs. Advisory for owners, by waitlist."
+    ctaLabel: "Start a conversation"
+    ctaUrl: "#work"
+    style: "dark"
+
+# Signature cohorts. Leave weeks and nextCohort as null until they are set:
+# the card then says "Dates to be announced". theme sets the colour band:
+# teal, navy, wine or olive. videoUrl adds a play button to the card.
+cohorts:
+  - audience: "For finance teams"
+    title: "AI for Finance Teams"
+    promise: "Use AI for analysis, forecasting and reporting, with the review controls finance needs."
+    weeks: null
+    nextCohort: null
+    videoUrl: null
+    theme: "teal"
+  - audience: "For finance managers"
+    title: "Finance Manager to CFO"
+    promise: "From my chair to yours: commercial judgement, owner and board reporting, and leadership presence."
+    weeks: null
+    nextCohort: null
+    videoUrl: null
+    theme: "navy"
+  - audience: "For anyone who presents numbers"
+    title: "Financial Storytelling"
+    promise: "Turn reports into a clear story that leads to a decision."
+    weeks: null
+    nextCohort: null
+    videoUrl: null
+    theme: "wine"
+  - audience: "For hotel leaders"
+    title: "Decision Making Under Uncertainty"
+    promise: "Scenario planning on a real hotel case, from assumptions to action."
+    weeks: null
+    nextCohort: null
+    videoUrl: null
+    theme: "olive"
 
 # Work with me. status is "open" or "waitlist". Switch Advisory to "open" when ready.
 offers:
@@ -98,7 +175,7 @@ offers:
     formats: "Keynote · Half-day workshop · Team programme"
     status: "open"
     ctaLabel: "Plan a session"
-    ctaUrl: "#sessions"
+    ctaUrl: "#notes"
     waitlistNote: null
   - audience: "For finance managers"
     title: "Mentoring"
@@ -160,98 +237,219 @@ projects:
     caseStudyUrl: null
     featured: false
 
-# Teaching platforms (the list rows).
+# Your profile on each teaching platform. Used in the footer (label), and as
+# the link for any course that has no link of its own.
 platforms:
   - platform: "Udemy"
+    label: "Udemy · Manish Gupta"
     summary: "146,065 learners and 2,368 reviews, from hotel finance to financial analysis"
     url: "https://www.udemy.com/user/manish-224/"
   - platform: "Udemy"
+    label: "Udemy · Hotel Management School"
     summary: "Hotel Management School: 58,536 learners and 1,197 reviews on hotel management courses"
     url: "https://www.udemy.com/user/hotel-management-school/"
   - platform: "Coursera"
+    label: "Coursera"
     summary: "19 courses with Starweaver and 73,306 learners, from Mastering Hotel Financials to GenAI for Financial Forecasting"
     url: "https://www.coursera.org/instructor/~139904014"
   - platform: "Alison"
+    label: "Alison"
     summary: "9 courses, 114,925 learners, including data analysis with Power BI and hospitality cash management"
     url: "https://alison.com/publisher/manish-gupta"
-  - platform: "eHMS"
-    summary: "Hotel Menu Engineering · How to Read a Hotel P&L in 20 Minutes"
-    url: "https://book.ehotelmanagementschool.com"
 
-# "Start here" course cards. Put your Udemy instructor referral link in
-# referralUrl: the site uses it instead of publicUrl (97% revenue share
-# instead of 37%, if the student buys within 24 hours of the click).
+# Courses, shown on /courses (all of them) and on the home page (featured: true).
+# platform is "Udemy", "Coursera" or "Alison". topic groups them on /courses.
+# learners is a plain number (no commas), or null. rating is text, or null.
+# Put your Udemy instructor referral link in referralUrl: the site uses it
+# instead of publicUrl (97% revenue share instead of 37%, if the student buys
+# within 24 hours of the click). With neither, the card links to your profile.
+# videoUrl adds a play button to the card.
 courses:
-  - platform: "Udemy"
-    title: "[Top Udemy course]"
-    stats: "[learners] · [rating]"
+  - platform: "Coursera"
+    topic: "Analysis and modelling"
+    title: "Introduction to KPIs: Measuring Success in Business"
+    learners: 8615
+    rating: "★ 4.6 · 99 reviews"
+    featured: true
     referralUrl: null
     publicUrl: null
+    videoUrl: null
   - platform: "Coursera"
+    topic: "Hotel finance"
     title: "Mastering Hotel Financials"
-    stats: "4,256 learners · 4.8 from 17 reviews"
+    learners: 4256
+    rating: "★ 4.8 · 17 reviews"
+    featured: true
     referralUrl: null
     publicUrl: "https://coursera.org/learn/mastering-hotel-financials"
-  - platform: "Alison"
-    title: "Financial Modelling in Decision-Making and Business Planning"
-    stats: "24,787 learners"
+    videoUrl: null
+  - platform: "Coursera"
+    topic: "AI for finance"
+    title: "GenAI for Financial Data Analysis"
+    learners: 3466
+    rating: "★ 4.2 · 18 reviews"
+    featured: true
     referralUrl: null
-    publicUrl: "https://alison.com/publisher/manish-gupta"
+    publicUrl: null
+    videoUrl: null
+  - platform: "Coursera"
+    topic: "Hotel finance"
+    title: "Foundations of Hotel Budgeting and Forecasting"
+    learners: 2707
+    rating: null
+    featured: false
+    referralUrl: null
+    publicUrl: null
+    videoUrl: null
+  - platform: "Coursera"
+    topic: "AI for finance"
+    title: "GenAI for Financial Forecasting and Planning"
+    learners: 2109
+    rating: "★ 4.2 · 25 reviews"
+    featured: false
+    referralUrl: null
+    publicUrl: null
+    videoUrl: null
+  - platform: "Udemy"
+    topic: "Hotel finance"
+    title: "Intro to Hotel Financial Statements (free)"
+    learners: 5535
+    rating: "★ 4.6 · 230 ratings"
+    featured: true
+    referralUrl: null
+    publicUrl: null
+    videoUrl: null
+  - platform: "Alison"
+    topic: "Analysis and modelling"
+    title: "Fundamental Data Analysis using Power BI"
+    learners: 51123
+    rating: null
+    featured: true
+    referralUrl: null
+    publicUrl: null
+    videoUrl: null
+  - platform: "Alison"
+    topic: "Analysis and modelling"
+    title: "Financial Modelling in Decision-Making and Business Planning"
+    learners: 24787
+    rating: null
+    featured: true
+    referralUrl: null
+    publicUrl: null
+    videoUrl: null
+  - platform: "Alison"
+    topic: "Hospitality operations"
+    title: "Restaurant Profitability: Analyse and Maximise"
+    learners: 10618
+    rating: null
+    featured: true
+    referralUrl: null
+    publicUrl: null
+    videoUrl: null
+  - platform: "Alison"
+    topic: "Hotel finance"
+    title: "Finance and Cash Management for Hospitality"
+    learners: 6423
+    rating: null
+    featured: false
+    referralUrl: null
+    publicUrl: null
+    videoUrl: null
+  - platform: "Alison"
+    topic: "Analysis and modelling"
+    title: "Fundamentals of Managing and Using Data for Business Intelligence"
+    learners: 6414
+    rating: null
+    featured: false
+    referralUrl: null
+    publicUrl: null
+    videoUrl: null
 
 # Book shelf. Each cover links to the book's page on the book site, where the
-# Amazon and direct-purchase links live. summary is one line under the cover.
-# theme sets the cover colour: reporting, budgeting, playbook, leadership,
-# independent or ai. Give a url only to link somewhere other than the book page.
+# samples, Amazon and direct-purchase links live. coverUrl is the cover image
+# (null shows a plain coloured cover). theme sets that fallback colour:
+# reporting, budgeting, playbook, leadership, independent or ai.
+# videoUrl adds a "1-minute look inside" link.
 books:
   - slug: "hotel-financial-reporting-in-practice"
     title: "Hotel Financial Reporting in Practice"
     summary: "Reading and using hotel financial statements to run the business, not just report it."
     theme: "reporting"
+    coverUrl: "https://lriyamltlgbrhsocyzrv.supabase.co/storage/v1/object/public/content-media/covers/hotel-financial-reporting-in-practice.jpg"
+    videoUrl: null
   - slug: "hotel-budgeting-and-forecasting"
     title: "Hotel Budgeting and Forecasting in Practice"
     summary: "Budgets that connect commercial assumptions, operations and accountability."
     theme: "budgeting"
+    coverUrl: "https://lriyamltlgbrhsocyzrv.supabase.co/storage/v1/object/public/content-media/covers/hotel-budgeting-and-forecasting.jpg"
+    videoUrl: null
   - slug: "hotel-operations-financial-playbook"
     title: "Hotel Operations Financial Playbook"
     summary: "Operational finance tools and management disciplines for hotel leaders."
     theme: "playbook"
+    coverUrl: "https://lriyamltlgbrhsocyzrv.supabase.co/storage/v1/object/public/content-media/covers/hotel-operations-financial-playbook.png"
+    videoUrl: null
   - slug: "from-finance-manager-to-cfo"
     title: "From Finance Manager to CFO"
     summary: "Moving from technical reporting to leadership, influence and business partnership."
     theme: "leadership"
+    coverUrl: "https://lriyamltlgbrhsocyzrv.supabase.co/storage/v1/object/public/content-media/covers/from-finance-manager-to-cfo.jpg"
+    videoUrl: null
   - slug: "independent-hotel-finance-made-simple"
     title: "Independent Hotel Finance Made Simple"
     summary: "Clear finance principles for owners and managers without a large finance team."
     theme: "independent"
+    coverUrl: "https://lriyamltlgbrhsocyzrv.supabase.co/storage/v1/object/public/content-media/covers/independent-hotel-finance-made-simple.jpg"
+    videoUrl: null
 
-# Decision guides, listed under the shelf and linked to the book site.
+# Decision guides, under the "Decision guides" tab, linked to the book site.
 guides:
   - title: "The Monthly Hotel P&L Review"
     subtitle: "Find the material variance, the first driver and the next management action."
     url: "https://book.ehotelmanagementschool.com/decision-guides/monthly-hotel-pl-review"
+    coverUrl: "https://lriyamltlgbrhsocyzrv.supabase.co/storage/v1/object/public/decision-guide-covers/monthly-hotel-pl-review/eb578799-af5a-4aa5-b8cb-ac2f045b3375/cover.jpg"
   - title: "13-Week Cash Flow for Hotels"
     subtitle: "Know when cash gets tight, and what management must do before it happens."
     url: "https://book.ehotelmanagementschool.com/decision-guides/13-week-hotel-cash-flow"
+    coverUrl: "https://lriyamltlgbrhsocyzrv.supabase.co/storage/v1/object/public/decision-guide-covers/13-week-hotel-cash-flow/c5d12ebb-33a9-42bc-a1a5-64e0540373ad/cover.png"
   - title: "My Food Cost Is Too High: Where Is the Loss?"
     subtitle: "A practical hotel food cost investigation guide."
     url: "https://book.ehotelmanagementschool.com/decision-guides/food-cost-investigation"
+    coverUrl: null
   - title: "Your Best-Seller May Be Your Worst Menu Decision"
     subtitle: "Better menu profitability with the eHMS TRAIL method."
     url: "https://book.ehotelmanagementschool.com/decision-guides/menu-engineering-trail"
+    coverUrl: null
   - title: "Restaurant Financial Performance Review"
     subtitle: "From customers and revenue to contribution, cost and next-month action."
     url: "https://book.ehotelmanagementschool.com/decision-guides/restaurant-financial-performance-review"
+    coverUrl: "https://lriyamltlgbrhsocyzrv.supabase.co/storage/v1/object/public/decision-guide-covers/restaurant-financial-performance-review/8f0b952c-989e-49a8-94a7-414be77f3743/cover.png"
   - title: "Independent Hotel First Budget Guide"
     subtitle: "A practical guide for independent hotel owners and managers."
     url: "https://book.ehotelmanagementschool.com/decision-guides/independent-hotel-first-budget-guide"
+    coverUrl: "https://lriyamltlgbrhsocyzrv.supabase.co/storage/v1/object/public/decision-guide-covers/independent-hotel-first-budget-guide/ed2667e7-e801-42b9-955a-f120bb5c3820/cover.jpg"
 
-appearances:
-  - showName: "Daily Mastermind"
-    linkLabel: "Listen"
-    url: null
-  - showName: "Valiant CEO"
-    linkLabel: "Read"
-    url: null
+# Speaking and podcasts: the topics you want to talk about.
+speakingTopics:
+  - tag: "Careers"
+    title: "From the finance manager's chair to the CFO's"
+    text: "What changes when you stop reporting the numbers and start owning the decisions."
+  - tag: "AI · Finance"
+    title: "Using AI without losing judgement"
+    text: "Where AI helps finance teams, where it misleads, and the controls that keep it honest."
+  - tag: "Leadership"
+    title: "From reporting numbers to changing decisions"
+    text: "What separates a finance function that reports from one that steers."
+  - tag: "Hospitality"
+    title: "What hotels teach about operating discipline"
+    text: "Daily P&L habits from hotels that any business can borrow."
+
+# Podcasts and interviews you have done. Shown under the speaking topics once
+# there is at least one. Example:
+#   - showName: "Show name"
+#     linkLabel: "Listen"
+#     url: "https://..."
+appearances: []
 
 career:
   - period: "2025–now"
@@ -275,7 +473,7 @@ career:
 podcastPages:
   - slug: "default"
     showName: "podcast"
-    intro: "Everything I mentioned on the episode is below, plus one free thing I promised."
+    intro: "Everything I mentioned on the episode is below, from my chair to yours, plus the free template I promised."
     resources:
       - kind: "Guide"
         title: "13-Week Cash Flow for Hotels"
@@ -286,6 +484,6 @@ podcastPages:
         label: "Beta"
         url: "https://app.ehotelmanagementschool.com"
       - kind: "Session"
-        title: "How finance teams can use AI without losing judgement"
+        title: "Using AI without losing judgement"
         label: "AI sessions"
-        url: "/#sessions"
+        url: "/#ai-lab"

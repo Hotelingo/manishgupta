@@ -257,8 +257,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 .resource__title { flex: 1 1 360px; min-width: 0; font-weight: 600; color: var(--navy); }
 .resource__label { font-size: 14px; color: var(--muted); }
 
-/* Notice shown only while running on sample content in development */
-.sample-banner { background: var(--chip-gold-bg); color: var(--chip-gold-fg); font-size: 13px; text-align: center; padding: 6px 16px; font-family: var(--font-mono); }
 
 /* Phone refinements */
 @media (max-width: 620px) {

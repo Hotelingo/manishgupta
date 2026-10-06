@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getContent } from "@/lib/content";
 
-export const revalidate = 300;
-
 export const metadata: Metadata = {
   title: "About",
   description: "Chartered Accountant, Group CFO and author: 23 years across hotel finance, operations and technology.",

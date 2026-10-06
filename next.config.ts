@@ -11,9 +11,6 @@ const nextConfig: NextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
-  images: {
-    remotePatterns: [{ protocol: "https", hostname: "*.supabase.co" }],
-  },
 };
 
 export default nextConfig;

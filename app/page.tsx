@@ -12,9 +12,6 @@ function hostOf(url: string) {
   }
 }
 
-// Rebuild the page from the database at most every five minutes.
-export const revalidate = 300;
-
 export default async function HomePage() {
   const c = await getContent();
   const s = c.settings;

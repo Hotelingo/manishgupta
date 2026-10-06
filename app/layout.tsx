@@ -31,13 +31,11 @@ const ga4 = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const content = await getContent();
-  const showSampleBanner = content.source === "sample" && process.env.NODE_ENV !== "production";
 
   return (
     <html lang="en">
       <body>
         <a className="skip-link" href="#main">Skip to content</a>
-        {showSampleBanner && <div className="sample-banner">Showing built-in sample content. Connect Supabase to edit it.</div>}
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter content={content} />

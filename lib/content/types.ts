@@ -1,6 +1,5 @@
-// Shapes of everything the site displays. Each type maps to one table in
-// Supabase (see supabase/proposed/portfolio_schema.sql) and to one list in
-// lib/content/seed.ts, which is used whenever the database is not connected.
+// Shapes of everything the site displays. Each type matches one section of
+// content/site.yaml, which is checked against these when the site is built.
 
 export type ProjectStatus = "idea" | "prototype" | "beta" | "live";
 export type OfferStatus = "open" | "waitlist";
@@ -125,5 +124,4 @@ export interface SiteContent {
   appearances: Appearance[];
   career: CareerItem[];
   podcastPages: PodcastPage[];
-  source: "database" | "sample";
 }

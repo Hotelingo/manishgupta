@@ -3,9 +3,9 @@ import { notFound } from "next/navigation";
 import { PodcastLanding } from "@/components/podcast-page";
 import { getContent } from "@/lib/content";
 
-export const revalidate = 300;
-
 type Params = { params: Promise<{ slug: string }> };
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const c = await getContent();

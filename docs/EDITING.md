@@ -27,29 +27,41 @@ Fix that line and commit again.
 - Inside double quotes, write a double quote as `\"`. Apostrophes are fine as they are.
 - A list item starts with `- ` at the same indentation as its neighbours.
 - `null` means "nothing here" (no link, no photo yet).
-- `true` / `false` without quotes for yes/no fields such as `featured` and `isTotal`.
+- `true` / `false` without quotes for yes/no fields such as `featured`.
+- Numbers such as `learners` without quotes or commas: `learners: 146065`.
 
 ## What each section controls
 
 | On the site | In `site.yaml` | Notes |
 |---|---|---|
-| Hero, About text, contact email, LinkedIn, speaking topics | `settings` | Headline = `heroBefore` + *`heroEmphasis`* (italic) + `heroAfter`. |
-| Four areas under the hero | `disciplines` | |
-| "The record" figures | `record` | `isTotal: true` on the row that adds up the rows above it. Update `settings.recordCheckedOn` when you recheck figures. |
-| Work with me | `offers` | `status`: `open` or `waitlist`. Switch Advisory to `open` when ready. |
-| Sessions | `sessions` | `status`: `upcoming` (shows Register) or `recorded` (shows Watch). |
+| Headline, intro, portrait, intro video, About text, contact email, monthly-notes heading | `settings` | Headline = `heroBefore` + *`heroEmphasis`* (gold italics) + `heroAfter`. Set `introVideoUrl` to show "Watch the 60-second intro". |
+| Learner bar chart | `reach` | Up to four platforms. `learners` is a plain number (`146065`, no commas). The total is added up for you. Update `settings.figuresCheckedOn` when you recheck. |
+| Three tiles beside the chart | `proof` | `icon`: `years`, `book` or `award`. |
+| Four areas under the chart | `disciplines` | |
+| The story (home and About pages) | `story` | A title and four short steps. |
+| Ways in | `waysIn` | `style`: `light` or `dark`. `ctaUrl` can be a section (`#cohorts`) or a page (`/courses`). |
+| Signature cohorts | `cohorts` | Leave `weeks` and `nextCohort` as `null` until set; the card says "Dates to be announced". `theme`: `teal`, `navy`, `wine` or `olive`. `videoUrl` adds a play button. |
+| Books tab | `books` | `coverUrl` is the cover image. `videoUrl` adds "1-minute look inside". Each book links to its page on the book site, where samples, Amazon and direct-purchase links live. |
+| Decision guides tab | `guides` | Title, subtitle, link and cover. |
+| Latest articles tab | nothing to edit | The three newest articles come from the book site's RSS feed, refreshed every hour. |
+| Courses (home page and /courses) | `courses` | `platform`: `Udemy`, `Coursera` or `Alison`. `featured: true` shows it on the home page. `topic` groups courses on /courses. Udemy referral link goes in `referralUrl` (see below). With no link, the card links to your profile on that platform. |
+| AI Lab sessions | `sessions` | `status`: `upcoming` (shows Register) or `recorded` (shows Watch). |
 | AI Lab projects | `projects` | `status`: `idea`, `prototype`, `beta` or `live`. `featured: true` shows one large. |
-| Teaching list | `platforms` | |
-| "Start here" courses | `courses` | Udemy referral link goes in `referralUrl` (see below). |
-| Book shelf | `books` | One-line `summary` under each cover. `theme` sets the cover colour. Each book links to its page on the book site, where the Amazon and direct-purchase links live. |
-| Decision guides list | `guides` | Title, one-line subtitle, link to the guide on the book site. |
-| Latest articles | nothing to edit | The three newest articles come automatically from the book site's RSS feed, refreshed every hour. Publish on the book site and they appear here. |
-| Recent appearances | `appearances` | |
-| Career | `career` | |
+| Work with me | `offers` | `status`: `open` or `waitlist`. Switch Advisory to `open` when ready. |
+| Speaking topics | `speakingTopics` | A tag, a title and one line each. |
+| Recent appearances | `appearances` | Hidden while the list is empty (`[]`). Add shows as you do them. |
+| Footer platform links | `platforms` | `label` is the name shown. |
+| Career (About page) | `career` | |
 | Podcast pages | `podcastPages` | See below. |
 
 The order on the page is the order in the file. To hide something, delete its
 item (it stays in GitHub's history if you want it back).
+
+## Videos
+
+Upload the video to YouTube (unlisted is fine) or Vimeo and paste the link into
+the `videoUrl` of a book, course or cohort, or `settings.introVideoUrl`. A play
+button appears; with `null` the site shows no video button at all.
 
 ## Photos and images
 
@@ -57,7 +69,11 @@ item (it stays in GitHub's history if you want it back).
    Use simple names without spaces, e.g. `portrait.jpg`.
 2. In `site.yaml`, point to it with a path that starts at `/images`:
    `portraitUrl: "/images/portrait.jpg"`
-3. Portrait: a 4:5 photo, at least 1200 px tall, under 500 KB.
+3. Portrait: a 4:5 or 3:4 photo, at least 1200 px tall, under 500 KB.
+4. Book and guide covers can also point at the book site's storage
+   (`https://lriyamltlgbrhsocyzrv.supabase.co/storage/v1/object/public/...`);
+   any other web address is refused by the build, because the site only
+   resizes images from those two places.
 
 ## Udemy referral links
 

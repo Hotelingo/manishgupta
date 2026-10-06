@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { StoryStrip } from "@/components/story";
 import { getContent } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Chartered Accountant, Group CFO and author: 23 years across hotel finance, operations and technology.",
+  description: "Chartered Accountant, Group CFO and author: 23 years across hotel finance, operations and technology, from audit in Delhi to the CFO's chair.",
   alternates: { canonical: "/about" },
 };
 
@@ -21,15 +22,15 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <section className="disciplines" aria-label="Areas of expertise">
-        <div className="wrap disciplines__row">
-          {c.disciplines.map((d) => (
-            <div className="discipline" key={d.label}>
-              <span className="discipline__label">{d.label}</span>
-              <span className="discipline__proof">{d.proof}</span>
-            </div>
-          ))}
-        </div>
+      <StoryStrip story={c.story} withLink={false} />
+
+      <section className="wrap disciplines" aria-label="Areas of expertise" style={{ paddingTop: 56 }}>
+        {c.disciplines.map((d) => (
+          <div className="discipline" key={d.label}>
+            <span className="discipline__label">{d.label}</span>
+            <span className="discipline__proof">{d.proof}</span>
+          </div>
+        ))}
       </section>
 
       <section className="wrap section" aria-labelledby="career-h">

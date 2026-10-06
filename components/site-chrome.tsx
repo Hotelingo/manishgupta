@@ -11,10 +11,11 @@ export function SiteHeader() {
           <span className="brand__role">CA · GROUP CFO</span>
         </Link>
         <nav className="nav" aria-label="Main">
-          <Link href="/#work">AI sessions</Link>
-          <Link href="/#work">Mentoring</Link>
-          <Link href="/#work">Advisory</Link>
-          <Link href="/#hospitality">Hospitality</Link>
+          <Link href="/#work">Work with me</Link>
+          <Link href="/#library">Books</Link>
+          <Link href="/courses">Courses</Link>
+          <Link href="/#cohorts">Cohorts</Link>
+          <Link href="/#ai-lab">AI Lab</Link>
           <Link href="/about">About</Link>
           <Link href="/#notes" className="nav__cta">Monthly notes</Link>
         </nav>
@@ -31,14 +32,15 @@ export function SiteFooter({ content }: { content: SiteContent }) {
       <div className="wrap site-footer__in">
         <div className="site-footer__brand">
           <span className="brand__name" style={{ color: "var(--navy)" }}>Manish Gupta</span>
-          <span className="muted small">Group CFO · Chartered Accountant · Author</span>
+          <span className="muted small">Hotel finance, operations and AI, from the CFO&apos;s chair.</span>
           <span className="site-footer__email">{settings.contactEmail}</span>
         </div>
         <nav aria-label="Work">
           <span className="kicker">Work</span>
-          <Link href="/#work">AI sessions</Link>
-          <Link href="/#work">Mentoring</Link>
-          <Link href="/#work">Advisory</Link>
+          <Link href="/courses">Courses</Link>
+          <Link href="/#cohorts">Cohorts</Link>
+          <Link href="/#ai-lab">AI sessions</Link>
+          <Link href="/#work">Mentoring and advisory</Link>
           <Link href="/#speaking">Speaking</Link>
         </nav>
         <nav aria-label="Hospitality">
@@ -51,7 +53,7 @@ export function SiteFooter({ content }: { content: SiteContent }) {
           <span className="kicker">Elsewhere</span>
           {settings.linkedinUrl && <a href={settings.linkedinUrl}>LinkedIn ↗</a>}
           {elsewhere.map((p) => (
-            <a key={p.url} href={p.url!}>{p.platform} ↗</a>
+            <a key={p.url} href={p.url ?? undefined}>{p.label} ↗</a>
           ))}
         </nav>
       </div>

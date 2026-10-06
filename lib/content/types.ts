@@ -4,6 +4,10 @@
 export type ProjectStatus = "idea" | "prototype" | "beta" | "live";
 export type OfferStatus = "open" | "waitlist";
 export type SessionStatus = "upcoming" | "recorded";
+export type ProofIcon = "years" | "book" | "award";
+export type WayStyle = "light" | "dark";
+export type CohortTheme = "teal" | "navy" | "wine" | "olive";
+export type CoursePlatform = "Udemy" | "Coursera" | "Alison";
 
 export interface SiteSettings {
   heroEyebrow: string;
@@ -12,26 +16,63 @@ export interface SiteSettings {
   heroEmphasis: string;
   heroAfter: string;
   heroIntro: string;
-  nowCaption: string;
   portraitUrl: string | null;
-  recordCheckedOn: string;
+  introVideoUrl: string | null;
+  nowCaption: string;
+  figuresCheckedOn: string;
   aboutHeading: string;
   aboutIntro: string;
   contactEmail: string;
   linkedinUrl: string | null;
-  speakingTopics: string[];
+  notesHeading: string;
+  notesText: string;
 }
 
-export interface RecordItem {
+export interface ReachItem {
   label: string;
-  value: string;
-  isTotal: boolean;
+  learners: number;
   sourceUrl: string | null;
+}
+
+export interface ProofItem {
+  value: string;
+  label: string;
+  icon: ProofIcon;
 }
 
 export interface Discipline {
   label: string;
   proof: string;
+}
+
+export interface StoryBeat {
+  when: string;
+  title: string;
+  text: string;
+}
+
+export interface Story {
+  title: string;
+  beats: StoryBeat[];
+}
+
+export interface WayIn {
+  step: string;
+  title: string;
+  text: string;
+  ctaLabel: string;
+  ctaUrl: string;
+  style: WayStyle;
+}
+
+export interface Cohort {
+  audience: string;
+  title: string;
+  promise: string;
+  weeks: string | null;
+  nextCohort: string | null;
+  videoUrl: string | null;
+  theme: CohortTheme;
 }
 
 export interface Offer {
@@ -65,17 +106,22 @@ export interface Project {
 
 export interface Platform {
   platform: string;
+  /** Name shown in the footer, e.g. "Udemy · Hotel Management School". */
+  label: string;
   summary: string;
   url: string | null;
 }
 
 export interface Course {
-  platform: string;
+  platform: CoursePlatform;
+  topic: string;
   title: string;
-  stats: string;
-  /** Instructor referral link. Used instead of publicUrl when present. */
-  referralUrl: string | null;
-  publicUrl: string | null;
+  learners: number | null;
+  rating: string | null;
+  featured: boolean;
+  /** Where the card links: referral link, else public link, else the platform profile. */
+  href: string | null;
+  videoUrl: string | null;
 }
 
 export interface Book {
@@ -84,12 +130,21 @@ export interface Book {
   summary: string;
   theme: string;
   url: string;
+  coverUrl: string | null;
+  videoUrl: string | null;
 }
 
 export interface Guide {
   title: string;
   subtitle: string;
   url: string;
+  coverUrl: string | null;
+}
+
+export interface SpeakingTopic {
+  tag: string;
+  title: string;
+  text: string;
 }
 
 export interface Appearance {
@@ -120,8 +175,12 @@ export interface PodcastPage {
 
 export interface SiteContent {
   settings: SiteSettings;
-  record: RecordItem[];
+  reach: ReachItem[];
+  proof: ProofItem[];
   disciplines: Discipline[];
+  story: Story;
+  waysIn: WayIn[];
+  cohorts: Cohort[];
   offers: Offer[];
   sessions: Session[];
   projects: Project[];
@@ -129,6 +188,7 @@ export interface SiteContent {
   courses: Course[];
   books: Book[];
   guides: Guide[];
+  speakingTopics: SpeakingTopic[];
   appearances: Appearance[];
   career: CareerItem[];
   podcastPages: PodcastPage[];

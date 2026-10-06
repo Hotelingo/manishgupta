@@ -41,7 +41,9 @@ Fix that line and commit again.
 | AI Lab projects | `projects` | `status`: `idea`, `prototype`, `beta` or `live`. `featured: true` shows one large. |
 | Teaching list | `platforms` | |
 | "Start here" courses | `courses` | Udemy referral link goes in `referralUrl` (see below). |
-| Book shelf | `books` | `theme` sets the cover colour. Links go to the book site. |
+| Book shelf | `books` | One-line `summary` under each cover. `theme` sets the cover colour. Each book links to its page on the book site, where the Amazon and direct-purchase links live. |
+| Decision guides list | `guides` | Title, one-line subtitle, link to the guide on the book site. |
+| Latest articles | nothing to edit | The three newest articles come automatically from the book site's RSS feed, refreshed every hour. Publish on the book site and they appear here. |
 | Recent appearances | `appearances` | |
 | Career | `career` | |
 | Podcast pages | `podcastPages` | See below. |
@@ -86,21 +88,23 @@ short and easy to say on air.
 
 ## Email sign-ups
 
-The site stores nothing itself. The form forwards each sign-up to a list kept
-elsewhere. Until that is set up, the form politely says sign-ups open soon. Two ways
-to switch it on:
+The site stores nothing itself. Each sign-up is forwarded to the book site's list
+(`reader_leads` in Supabase) with type `portfolio`, so it does not start the
+hotel-book chapter emails, and its `source` shows which page it came from
+(for example `camanishgupta.com/podcast/valiant`).
 
-**A. Use the book site's list (one list for everything).** Needs a small change in
-the book site so portfolio sign-ups are stored under their own type and do not
-start the hotel-book chapter emails. Then set on Vercel:
-`LEADS_ENDPOINT=https://book.ehotelmanagementschool.com/api/leads`,
-`PRIVACY_POLICY_VERSION` (the book site's current policy version) and
-`NEXT_PUBLIC_TURNSTILE_SITE_KEY` (the book site's key, with camanishgupta.com added
-to its allowed hostnames in Cloudflare).
+To switch it on (once):
+1. Merge hotel-finance-book PR #307 and let the book site deploy. The database
+   change is already applied.
+2. On Vercel, set `LEADS_ENDPOINT=https://book.ehotelmanagementschool.com/api/leads`.
+3. If the book site uses Cloudflare Turnstile (its Render settings have
+   `TURNSTILE_SECRET_KEY`): copy its `NEXT_PUBLIC_TURNSTILE_SITE_KEY` to Vercel, and
+   in Cloudflare add `camanishgupta.com` to that widget's allowed hostnames.
+4. Redeploy on Vercel, sign up with your own address, and check the new row in
+   `reader_leads` (type `portfolio`).
 
-**B. Use an email service** (for example MailerLite, Kit or Buttondown). Simpler,
-and it sends the monthly notes for you, but it is a second list next to the book
-site's.
+Until step 2 is done, the form politely says sign-ups open soon. If the book
+site's privacy policy version changes, set `PRIVACY_POLICY_VERSION` to match.
 
 ## Figures you publish
 

@@ -67,7 +67,7 @@ record:
     isTotal: false
     sourceUrl: null
   - label: "Hotel Finance Practice Library"
-    value: "5 books · 4 guides"
+    value: "5 books · 6 guides"
     isTotal: false
     sourceUrl: "https://book.ehotelmanagementschool.com"
   - label: "Recognition"
@@ -194,25 +194,52 @@ courses:
     referralUrl: null
     publicUrl: "https://alison.com/publisher/manish-gupta"
 
-# Book shelf. theme sets the cover colour: reporting, budgeting, playbook,
-# leadership, independent or ai. The link goes to the book on the book site
-# unless you give a url.
+# Book shelf. Each cover links to the book's page on the book site, where the
+# Amazon and direct-purchase links live. summary is one line under the cover.
+# theme sets the cover colour: reporting, budgeting, playbook, leadership,
+# independent or ai. Give a url only to link somewhere other than the book page.
 books:
   - slug: "hotel-financial-reporting-in-practice"
     title: "Hotel Financial Reporting in Practice"
+    summary: "Reading and using hotel financial statements to run the business, not just report it."
     theme: "reporting"
   - slug: "hotel-budgeting-and-forecasting"
     title: "Hotel Budgeting and Forecasting in Practice"
+    summary: "Budgets that connect commercial assumptions, operations and accountability."
     theme: "budgeting"
   - slug: "hotel-operations-financial-playbook"
     title: "Hotel Operations Financial Playbook"
+    summary: "Operational finance tools and management disciplines for hotel leaders."
     theme: "playbook"
   - slug: "from-finance-manager-to-cfo"
     title: "From Finance Manager to CFO"
+    summary: "Moving from technical reporting to leadership, influence and business partnership."
     theme: "leadership"
   - slug: "independent-hotel-finance-made-simple"
     title: "Independent Hotel Finance Made Simple"
+    summary: "Clear finance principles for owners and managers without a large finance team."
     theme: "independent"
+
+# Decision guides, listed under the shelf and linked to the book site.
+guides:
+  - title: "The Monthly Hotel P&L Review"
+    subtitle: "Find the material variance, the first driver and the next management action."
+    url: "https://book.ehotelmanagementschool.com/decision-guides/monthly-hotel-pl-review"
+  - title: "13-Week Cash Flow for Hotels"
+    subtitle: "Know when cash gets tight, and what management must do before it happens."
+    url: "https://book.ehotelmanagementschool.com/decision-guides/13-week-hotel-cash-flow"
+  - title: "My Food Cost Is Too High: Where Is the Loss?"
+    subtitle: "A practical hotel food cost investigation guide."
+    url: "https://book.ehotelmanagementschool.com/decision-guides/food-cost-investigation"
+  - title: "Your Best-Seller May Be Your Worst Menu Decision"
+    subtitle: "Better menu profitability with the eHMS TRAIL method."
+    url: "https://book.ehotelmanagementschool.com/decision-guides/menu-engineering-trail"
+  - title: "Restaurant Financial Performance Review"
+    subtitle: "From customers and revenue to contribution, cost and next-month action."
+    url: "https://book.ehotelmanagementschool.com/decision-guides/restaurant-financial-performance-review"
+  - title: "Independent Hotel First Budget Guide"
+    subtitle: "A practical guide for independent hotel owners and managers."
+    url: "https://book.ehotelmanagementschool.com/decision-guides/independent-hotel-first-budget-guide"
 
 appearances:
   - showName: "Daily Mastermind"
@@ -249,7 +276,7 @@ podcastPages:
       - kind: "Guide"
         title: "13-Week Cash Flow for Hotels"
         label: "eHMS Press"
-        url: "https://book.ehotelmanagementschool.com/decision-guides"
+        url: "https://book.ehotelmanagementschool.com/decision-guides/13-week-hotel-cash-flow"
       - kind: "Tool"
         title: "Hotel Finance Workspace demo"
         label: "Beta"

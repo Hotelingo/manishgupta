@@ -30,9 +30,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Tick the box to confirm you want the monthly notes." }, { status: 400 });
   }
 
+  // Sign-ups switch on when LEADS_ENDPOINT is set on Vercel (see docs/EDITING.md).
   const endpoint = process.env.LEADS_ENDPOINT;
-  const privacyVersion = process.env.PRIVACY_POLICY_VERSION;
-  if (!endpoint || !privacyVersion) {
+  // The privacy policy version the visitor accepts; must match the book site's
+  // LEGAL_POLICY_VERSION in lib/legal.ts when that policy changes.
+  const privacyVersion = process.env.PRIVACY_POLICY_VERSION || "2026-09-08";
+  if (!endpoint) {
     return NextResponse.json(
       { message: "Sign-ups open very soon. Please check back in a few days." },
       { status: 503 },

@@ -149,8 +149,17 @@ export function loadContent(source: string): SiteContent {
       return {
         slug,
         title: text(r, "title", w),
+        summary: text(r, "summary", w),
         theme: oneOf(r, "theme", ["reporting", "budgeting", "playbook", "leadership", "independent", "ai"] as const, w),
         url: optional(r, "url", w) ?? bookUrl(slug),
+      };
+    }),
+    guides: arr(root.guides, "guides").map((r, i) => {
+      const w = `guides[${i + 1}]`;
+      return {
+        title: text(r, "title", w),
+        subtitle: text(r, "subtitle", w),
+        url: text(r, "url", w),
       };
     }),
     appearances: arr(root.appearances, "appearances").map((r, i) => ({

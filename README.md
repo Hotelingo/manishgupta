@@ -7,7 +7,9 @@ hub that links to the eHMS books, app and tools.
 - **Hosting:** Vercel
 - **Content:** one file, `content/site.yaml`. No database. Every page is built as a
   static page, so the site is fast and has nothing to break or pay for.
-- **Email sign-ups:** optional; forwarded to the book site's lead store (see `docs/EDITING.md`).
+- **Library:** books, decision guides and the latest articles link to the book site;
+  articles come from its RSS feed automatically.
+- **Email sign-ups:** forwarded to the book site's list (see `docs/EDITING.md`).
 
 ## Change the content
 

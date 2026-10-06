@@ -81,7 +81,14 @@ export interface Course {
 export interface Book {
   slug: string;
   title: string;
+  summary: string;
   theme: string;
+  url: string;
+}
+
+export interface Guide {
+  title: string;
+  subtitle: string;
   url: string;
 }
 
@@ -121,6 +128,7 @@ export interface SiteContent {
   platforms: Platform[];
   courses: Course[];
   books: Book[];
+  guides: Guide[];
   appearances: Appearance[];
   career: CareerItem[];
   podcastPages: PodcastPage[];

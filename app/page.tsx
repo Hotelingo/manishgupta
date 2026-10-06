@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SignupForm } from "@/components/signup-form";
 import { StatusChip } from "@/components/site-chrome";
 import { courseHref, getContent } from "@/lib/content";
+import { getLatestArticles } from "@/lib/library-feed";
 import { APP_URL, BOOK_SITE_URL, EHMS_URL, SITE_URL } from "@/lib/site";
 
 function hostOf(url: string) {
@@ -13,7 +14,7 @@ function hostOf(url: string) {
 }
 
 export default async function HomePage() {
-  const c = await getContent();
+  const [c, articles] = await Promise.all([getContent(), getLatestArticles(3)]);
   const s = c.settings;
   const featured = c.projects.find((p) => p.featured) ?? c.projects[0];
   const otherProjects = c.projects.filter((p) => p !== featured);
@@ -175,29 +176,66 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Hospitality */}
+      {/* Hospitality: books, decision guides and latest articles, all on the book site */}
       <section id="hospitality" className="wrap section" aria-labelledby="hosp-h">
         <div className="split" style={{ alignItems: "flex-end", gap: "24px 64px" }}>
           <div className="section-head" style={{ flex: "1 1 420px" }}>
-            <span className="kicker">Where the practice comes from</span>
+            <span className="kicker">The library</span>
             <h2 id="hosp-h" className="display h2">Seventeen years of hotel finance, written down.</h2>
           </div>
           <p style={{ flex: "1 1 360px", color: "var(--body)" }}>
-            Hotels are where I learned that a number only matters if it changes a decision. The books, guides and tools live at eHotel Management School.
+            Hotels are where I learned that a number only matters if it changes a decision. The books, guides and articles live on eHMS Press, where you can read samples and buy direct or on Amazon.
           </p>
         </div>
         <div className="shelf">
           {c.books.map((b) => (
-            <a key={b.slug} href={b.url} className={`cover cover--${b.theme}`} aria-label={`${b.title}, on eHMS Press`}>
-              <span className="cover__rule" aria-hidden="true" />
-              <span className="cover__title">{b.title}</span>
-              <span className="cover__imprint">EHMS PRESS</span>
+            <a key={b.slug} href={b.url} className="book">
+              <span className={`cover cover--${b.theme}`} aria-hidden="true">
+                <span className="cover__rule" />
+                <span className="cover__title">{b.title}</span>
+                <span className="cover__imprint">EHMS PRESS</span>
+              </span>
+              <span className="book__title">{b.title}</span>
+              <span className="book__summary">{b.summary}</span>
             </a>
           ))}
         </div>
+        <div className="cols" style={{ gap: "32px 56px" }}>
+          <div>
+            <h3 className="list-head">Decision guides</h3>
+            <ul className="entries">
+              {c.guides.map((g) => (
+                <li key={g.url}>
+                  <a href={g.url} className="entry">
+                    <span className="entry__title">{g.title}</span>
+                    <span className="entry__text">{g.subtitle}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a href={`${BOOK_SITE_URL}/decision-guides`} className="text-link">All decision guides ↗</a>
+          </div>
+          {articles.length > 0 && (
+            <div>
+              <h3 className="list-head">Latest articles</h3>
+              <ul className="entries">
+                {articles.map((a) => (
+                  <li key={a.url}>
+                    <a href={a.url} className="entry">
+                      <span className="entry__meta">{[a.category, a.date].filter(Boolean).join(" · ")}</span>
+                      <span className="entry__title">{a.title}</span>
+                      <span className="entry__text">{a.summary}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <a href={`${BOOK_SITE_URL}/knowledge`} className="text-link">All articles ↗</a>
+            </div>
+          )}
+        </div>
         <div className="link-cards">
           <a href={BOOK_SITE_URL} className="link-card">
-            <span className="link-card__title">Books, decision guides and articles ↗</span>
+            <span className="link-card__title">Books, guides and articles ↗</span>
             <span className="link-card__sub">book.ehotelmanagementschool.com</span>
           </a>
           <a href={APP_URL} className="link-card">

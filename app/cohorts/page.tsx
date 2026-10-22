@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./cohorts.css";
 import Link from "next/link";
+import { CohortFormEmbed } from "@/components/cohort-form-embed";
 
 export const metadata: Metadata = {
   title: "Live Cohorts & Practical Workshops",
@@ -49,8 +50,6 @@ const extras = [
   "Hotel Cash Flow, Working Capital & Owner Reporting",
   "Finance Manager to CFO: Leadership & Advisory",
 ];
-
-const formUrl = "https://form.jotform.com/262941412631048";
 
 export default function CohortsPage() {
   return (
@@ -132,10 +131,7 @@ export default function CohortsPage() {
             <h2 id="interest-title" className="display h2">Tell me what you would actually attend.</h2>
             <p className="muted-body">Rank the topics you want, tell us whether a focused masterclass or a hands-on workshop suits you, and share your price and scheduling preferences. We will contact you about relevant sessions when dates are confirmed.</p>
           </div>
-          <div className="cohort-form-wrap">
-            <iframe title="Live cohort course interest registration form" src={formUrl} loading="lazy" className="cohort-form" referrerPolicy="strict-origin-when-cross-origin" />
-            <p className="small muted">The form is securely hosted by Jotform. If it does not appear in your browser, <a href={formUrl} target="_blank" rel="noopener noreferrer">open the registration form in a new tab ↗</a>.</p>
-          </div>
+          <CohortFormEmbed />
           <p className="small muted">Registration is an expression of interest only. No confirmed dates, guaranteed seats or charges. Please review our <a href="https://book.ehotelmanagementschool.com/legal/privacy">privacy policy</a> before submitting.</p>
           <Link href="/courses" className="text-link">Prefer to start now? Explore the self-paced course library →</Link>
         </div>

@@ -7,17 +7,23 @@ podcast pages — lives in one file: **`content/site.yaml`**. There is no databa
 
 The home page includes a **Podcast appearances** section under "Speaking and podcasts".
 To add another published interview, open `content/site.yaml` and find
-`appearances:`. Add a new three-line item **above** the older ones:
+`appearances:`. Add a new entry **above** the older ones:
 
 ```yaml
-  - showName: "Exact interview or podcast title"
+  - showName: "Interview headline or exact episode title"
     linkLabel: "Watch the episode"
     url: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID"
+    summary: "Optional one-paragraph introduction to the conversation"
+    highlights:
+      - "Optional first discussion topic"
+      - "Optional second discussion topic"
 ```
 
 For a non-YouTube interview, put its public podcast or article URL instead.
 YouTube links automatically display a video thumbnail; other URLs display
-a plain link card. Avoid naming the podcast or its host until verified.
+a plain link card. `summary` and `highlights` are optional: omit both for
+short entries. Do not imply an editorial headline is the official title, or
+name a podcast host, unless you have verified those details.
 Commit the content-file change to `main` once reviewed; Vercel will
 rebuild the page. No application code or database changes are needed.
 

@@ -269,6 +269,7 @@ a.reach__label:hover { color: #fff; }
 .course-card--udemy .course-card__band { background: linear-gradient(135deg, #4a1f24, #63292f); }
 .course-card--coursera .course-card__band { background: linear-gradient(135deg, #13305a, #1b4a80); }
 .course-card--alison .course-card__band { background: linear-gradient(135deg, #1f3a2c, #2a4d3b); }
+.course-card--mycpe .course-card__band { background: linear-gradient(135deg, #153d56, #267b8c); }
 .course-card__play { width: 46px; height: 46px; }
 .course-card__body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .course-card__meta { display: flex; justify-content: space-between; gap: 8px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }

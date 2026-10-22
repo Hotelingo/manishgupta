@@ -256,9 +256,13 @@ platforms:
     label: "Alison"
     summary: "9 courses, 114,925 learners, including data analysis with Power BI and hospitality cash management"
     url: "https://alison.com/publisher/manish-gupta"
+  - platform: "MYCPE"
+    label: "MYCPE ONE · Professional CPE/CE"
+    summary: "On-demand continuing education for accountants, auditors, finance leaders and business professionals"
+    url: "https://my-cpe.com/continuing-education/manish-gupta"
 
 # Courses, shown on /courses (all of them) and on the home page (featured: true).
-# platform is "Udemy", "Coursera" or "Alison". topic groups them on /courses.
+# platform is "Udemy", "Coursera", "Alison" or "MYCPE". topic groups them on /courses.
 # learners is a plain number (no commas), or null. rating is text, or null.
 # Put your Udemy instructor referral link in referralUrl: the site uses it
 # instead of publicUrl (97% revenue share instead of 37%, if the student buys
@@ -363,6 +367,82 @@ courses:
     featured: false
     referralUrl: null
     publicUrl: null
+    videoUrl: null
+
+  # Selected on-demand MYCPE ONE courses. No learner count is included because
+  # an instructor-specific, verified total is not currently available.
+  # Course-level CPE/CE eligibility depends on the learner's qualification.
+  - platform: "MYCPE"
+    topic: "AI for finance"
+    title: "AI-Driven Budgeting: From Spreadsheets to Predictive Models"
+    learners: null
+    rating: null
+    featured: true
+    referralUrl: null
+    publicUrl: "https://my-cpe.com/courses/ai-driven-budgeting-from-spreadsheets-to-predictive-models?opentab=ondemand"
+    videoUrl: null
+  - platform: "MYCPE"
+    topic: "AI for audit"
+    title: "Auditor's Playbook: Agentic AI for Proactive Fraud Detection"
+    learners: null
+    rating: null
+    featured: true
+    referralUrl: null
+    publicUrl: "https://my-cpe.com/courses/auditors-playbook-agentic-ai-for-proactive-fraud-detection?opentab=ondemand"
+    videoUrl: null
+  - platform: "MYCPE"
+    topic: "Analysis and modelling"
+    title: "Financial Storytelling with Power BI"
+    learners: null
+    rating: null
+    featured: true
+    referralUrl: null
+    publicUrl: "https://my-cpe.com/courses/financial-storytelling-with-power-bi?opentab=ondemand"
+    videoUrl: null
+  - platform: "MYCPE"
+    topic: "Analysis and modelling"
+    title: "Decision-Making with Scenario Planning & Sensitivity Analysis"
+    learners: null
+    rating: null
+    featured: false
+    referralUrl: null
+    publicUrl: "https://my-cpe.com/courses/decision-making-with-scenario-planning-and-sensitivity-analysis?opentab=ondemand"
+    videoUrl: null
+  - platform: "MYCPE"
+    topic: "AI for audit"
+    title: "Power BI and Tableau: Data Visualization for Internal Audit Reporting"
+    learners: null
+    rating: null
+    featured: false
+    referralUrl: null
+    publicUrl: "https://my-cpe.com/courses/power-bi-and-tableau-data-visualization-for-internal-audit-reporting?opentab=ondemand"
+    videoUrl: null
+  - platform: "MYCPE"
+    topic: "AI for finance"
+    title: "Using Claude to Streamline Excel Workflows for Professionals"
+    learners: null
+    rating: null
+    featured: false
+    referralUrl: null
+    publicUrl: "https://my-cpe.com/courses/using-claude-to-streamline-excel-workflows-for-professionals?opentab=ondemand"
+    videoUrl: null
+  - platform: "MYCPE"
+    topic: "Finance leadership"
+    title: "Finance Business Partnering: Decisions Beyond the Numbers"
+    learners: null
+    rating: null
+    featured: false
+    referralUrl: null
+    publicUrl: "https://my-cpe.com/courses/finance-business-partnering-decisions-beyond-the-numbers?opentab=ondemand"
+    videoUrl: null
+  - platform: "MYCPE"
+    topic: "Analysis and modelling"
+    title: "How to Read, Understand, Analyze and Present Annual Reports"
+    learners: null
+    rating: null
+    featured: false
+    referralUrl: null
+    publicUrl: "https://my-cpe.com/courses/how-to-read-understand-analyze-and-present-annual-reports?opentab=ondemand"
     videoUrl: null
 
 # Book shelf. Each cover links to the book's page on the book site, where the

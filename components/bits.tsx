@@ -77,7 +77,7 @@ export function CourseCard({ course }: { course: Course }) {
           </span>
           {course.href && (
             <a href={course.href} className="course-card__cta">
-              Enrol on {course.platform} <span aria-hidden="true">↗</span>
+              {course.platform === "MYCPE" ? "View on MYCPE ONE" : `Enrol on ${course.platform}`} <span aria-hidden="true">↗</span>
             </a>
           )}
         </div>

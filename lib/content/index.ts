@@ -80,7 +80,7 @@ function image(o: Obj, key: string, where: string): string | null {
   return v;
 }
 
-const COURSE_PLATFORMS = ["Udemy", "Coursera", "Alison"] as const;
+const COURSE_PLATFORMS = ["Udemy", "Coursera", "Alison", "MYCPE"] as const;
 
 export function loadContent(source: string): SiteContent {
   let raw: unknown;

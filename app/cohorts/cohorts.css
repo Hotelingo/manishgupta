@@ -14,6 +14,7 @@
 .cohort-outcomes{padding-left:20px;display:grid;gap:7px;color:var(--body)}
 .cohort-track-cta{align-self:flex-start;margin-top:auto}
 .cohort-other{background:var(--mist);border:1px solid var(--line);border-radius:10px;padding:22px;font-weight:600;color:var(--navy)}
-.cohort-form-wrap{background:var(--paper);padding:16px;border-radius:12px;border:1px solid var(--line);display:flex;flex-direction:column;gap:12px;max-width:850px;width:100%}
-.cohort-form{display:block;width:100%;min-height:1250px;border:0;background:#fff;border-radius:8px}
-@media(max-width:760px){.cohort-format-grid,.cohort-track-grid,.cohort-other-grid{grid-template-columns:1fr}.cohort-format,.cohort-track{padding:21px}.cohort-form-wrap{padding:8px}.cohort-form{min-height:1550px}}
+.cohort-form-wrap{background:var(--paper);padding:clamp(12px,3vw,28px);border-radius:12px;border:1px solid var(--line);display:flex;flex-direction:column;gap:12px;max-width:800px;width:100%;margin-inline:auto;box-sizing:border-box}
+.cohort-form{display:block;width:100%;height:740px;min-height:740px;border:0;background:#fff;border-radius:8px}
+.cohort-form-help{margin:0;line-height:1.55}
+@media(max-width:760px){.cohort-format-grid,.cohort-track-grid,.cohort-other-grid{grid-template-columns:1fr}.cohort-format,.cohort-track{padding:21px}.cohort-form-wrap{padding:10px;width:100%}.cohort-form{min-height:700px}}

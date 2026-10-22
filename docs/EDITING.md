@@ -3,6 +3,24 @@
 Everything you see on the site — text, figures, links, sessions, projects,
 podcast pages — lives in one file: **`content/site.yaml`**. There is no database.
 
+## Add another podcast appearance
+
+The home page includes a **Podcast appearances** section under "Speaking and podcasts".
+To add another published interview, open `content/site.yaml` and find
+`appearances:`. Add a new three-line item **above** the older ones:
+
+```yaml
+  - showName: "Exact interview or podcast title"
+    linkLabel: "Watch the episode"
+    url: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID"
+```
+
+For a non-YouTube interview, put its public podcast or article URL instead.
+YouTube links automatically display a video thumbnail; other URLs display
+a plain link card. Avoid naming the podcast or its host until verified.
+Commit the content-file change to `main` once reviewed; Vercel will
+rebuild the page. No application code or database changes are needed.
+
 ## Change some text
 
 1. On GitHub, open `content/site.yaml` in the `main` branch.

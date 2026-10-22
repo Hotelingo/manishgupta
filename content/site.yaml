@@ -528,9 +528,18 @@ speakingTopics:
 # To add another: copy the three lines below, change the title, link text and URL.
 # Only include public interviews you have already appeared in.
 appearances:
-  - showName: "Podcast conversation on YouTube"
-    linkLabel: "Watch the episode"
+  # The headline below describes the conversation; it is not claimed as the publisher's official episode title.
+  - showName: "Three Rooms a Day: Direct Booking Economics & Hotel Profitability"
+    linkLabel: "Watch the full conversation"
     url: "https://www.youtube.com/watch?v=rK_r3lW3R-s"
+    summary: "A practical conversation for boutique hotel owners: the real cost of OTA distribution, when direct-booking marketing pays for itself, and how to make sound financial decisions without perfect historical data. We also discuss a hotel turnaround in Chiang Mai and the need to reinvest in a property's long-term appeal."
+    highlights:
+      - "The hidden costs of OTA bookings beyond the headline commission — and why OTAs still have a role"
+      - "The three-extra-rooms-a-day illustration and the direct-booking break-even calculation"
+      - "How to present a credible branding and marketing investment case to a bank"
+      - "Why net retained revenue matters more than the room rate alone"
+      - "Forecasting occupancy and preparing budgets for a new hotel with no trading history"
+      - "Owner money habits and planning property refreshes over a 7–10-year cycle"
 
 career:
   - period: "2025–now"

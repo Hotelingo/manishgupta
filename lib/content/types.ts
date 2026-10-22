@@ -148,9 +148,12 @@ export interface SpeakingTopic {
 }
 
 export interface Appearance {
+  /** An editorial headline; need not be the host's official episode title. */
   showName: string;
   linkLabel: string;
   url: string | null;
+  summary: string | null;
+  highlights: string[];
 }
 
 export interface CareerItem {

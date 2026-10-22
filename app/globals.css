@@ -322,7 +322,7 @@ a.reach__label:hover { color: #fff; }
 .topic__title { font-family: var(--font-display); font-size: 22px; line-height: 1.2; font-weight: 600; color: var(--navy); }
 .topic__text { font-size: 15px; line-height: 1.5; color: var(--body); }
 .appearances { margin-top: 18px; display: flex; flex-direction: column; gap: 14px; }
-.appearance { display: flex; gap: 16px; align-items: stretch; padding: 12px; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.appearance { display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch; padding: 12px; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
 .appearance__media { flex: 0 0 42%; min-width: 135px; min-height: 125px; aspect-ratio: 16 / 9; position: relative; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #142a47, #285873); background-position: center; background-size: cover; border-radius: 8px; text-decoration: none; }
 .appearance__media::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(180deg, rgba(11,25,44,.06), rgba(11,25,44,.35)); }
 .appearance__play { z-index: 1; position: relative; display: flex; justify-content: center; align-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--paper); color: var(--navy); box-shadow: 0 4px 20px rgba(0,0,0,.18); padding-left: 3px; }
@@ -330,6 +330,11 @@ a.reach__label:hover { color: #fff; }
 .appearance__info { min-width: 0; flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 9px; }
 .appearance__eyebrow { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .08em; font-size: 10px; color: var(--muted); }
 .appearance__name { font-family: var(--font-display); font-size: clamp(18px,2vw,22px); font-weight: 600; line-height: 1.25; color: var(--navy); }
+.appearance__detail { flex: 0 0 100%; display: flex; flex-direction: column; gap: 12px; padding: 0 4px 8px; }
+.appearance__summary { color: var(--body); font-size: 14px; line-height: 1.65; }
+.appearance__subhead { color: var(--navy); font-size: 13px; letter-spacing: .025em; }
+.appearance__highlights { list-style: disc; display: grid; gap: 8px; margin: 0; padding-left: 19px; color: var(--body); font-size: 13px; line-height: 1.55; }
+.appearance__highlights li::marker { color: var(--gold-hover); }
 @media(max-width:540px) { .appearance { flex-direction: column; }.appearance__media { min-width: 0; flex-basis: auto; width: 100%; }.appearance__info { padding: 4px 3px 8px; } }
 
 /* Career (About page) */

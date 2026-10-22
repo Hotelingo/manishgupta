@@ -337,7 +337,7 @@ export default async function HomePage() {
                           rel="noopener noreferrer"
                           className="appearance__media"
                           style={poster ? { backgroundImage: `url("${poster}")` } : undefined}
-                          aria-label={`Watch ${a.showName} on YouTube (opens in a new tab)`}
+                          aria-label={`Open ${a.showName} (opens in a new tab)`}
                         >
                           <span className="appearance__play" aria-hidden="true">▶</span>
                         </a>
@@ -353,6 +353,19 @@ export default async function HomePage() {
                           <span className="small muted">{a.linkLabel}</span>
                         )}
                       </div>
+                      {(a.summary || a.highlights.length > 0) && (
+                        <div className="appearance__detail">
+                          {a.summary && <p className="appearance__summary">{a.summary}</p>}
+                          {a.highlights.length > 0 && (
+                            <>
+                              <strong className="appearance__subhead">In this conversation</strong>
+                              <ul className="appearance__highlights">
+                                {a.highlights.map((point) => <li key={point}>{point}</li>)}
+                              </ul>
+                            </>
+                          )}
+                        </div>
+                      )}
                     </article>
                   );
                 })}

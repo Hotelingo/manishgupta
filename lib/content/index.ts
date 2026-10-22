@@ -45,6 +45,18 @@ function optional(o: Obj, key: string, where: string): string | null {
   return v;
 }
 
+function optionalTextList(o: Obj, key: string, where: string): string[] {
+  const value = o[key];
+  if (value === null || value === undefined) return [];
+  if (!Array.isArray(value)) throw new ContentError(`${where}.${key}`, "must be a list of quoted text");
+  return value.map((item, i) => {
+    if (typeof item !== "string" || !item.trim()) {
+      throw new ContentError(`${where}.${key}[${i + 1}]`, "must be nonempty text");
+    }
+    return item;
+  });
+}
+
 function flag(o: Obj, key: string): boolean {
   return o[key] === true;
 }
@@ -243,6 +255,8 @@ export function loadContent(source: string): SiteContent {
       showName: text(r, "showName", `appearances[${i + 1}]`),
       linkLabel: text(r, "linkLabel", `appearances[${i + 1}]`),
       url: link(r, "url", `appearances[${i + 1}]`),
+      summary: optional(r, "summary", `appearances[${i + 1}]`),
+      highlights: optionalTextList(r, "highlights", `appearances[${i + 1}]`),
     })),
     career: arr(root.career, "career").map((r, i) => ({
       period: text(r, "period", `career[${i + 1}]`),

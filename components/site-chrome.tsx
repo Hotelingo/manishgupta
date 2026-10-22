@@ -40,7 +40,8 @@ export function SiteFooter({ content }: { content: SiteContent }) {
           <Link href="/courses">Courses</Link>
           <Link href="/cohorts">Live cohorts</Link>
           <Link href="/#ai-lab">AI sessions</Link>
-          <Link href="/#work">Mentoring and advisory</Link>
+          <Link href="/consulting">Hotel consulting</Link>
+          <Link href="/mentorship">One-to-one mentorship</Link>
           <Link href="/#speaking">Speaking</Link>
         </nav>
         <nav aria-label="Hospitality">

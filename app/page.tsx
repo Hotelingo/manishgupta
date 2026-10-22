@@ -21,6 +21,22 @@ function hostOf(url: string) {
   }
 }
 
+/** Use the YouTube video ID to show a lightweight poster, never autoplay an embed. */
+function podcastThumbnail(url: string | null) {
+  if (!url) return null;
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname.replace(/^www\./, "");
+    const id = host === "youtube.com"
+      ? parsed.searchParams.get("v")
+      : host === "youtu.be" ? parsed.pathname.slice(1) : null;
+    return id && /^[A-Za-z0-9_-]{11}$/.test(id)
+      ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null;
+  } catch {
+    return null;
+  }
+}
+
 export default async function HomePage() {
   const [c, articles] = await Promise.all([getContent(), getLatestArticles(3)]);
   const s = c.settings;
@@ -301,21 +317,45 @@ export default async function HomePage() {
           <div className="speaking__intro">
             <span className="kicker">Speaking and podcasts</span>
             <h2 id="speak-h" className="display h2">Topics I want to talk about.</h2>
-            <p className="muted-body">For podcasts, conferences and in-house sessions. Each topic comes with a one-page outline and slides.</p>
+            <p className="muted-body">Conversations about finance, hotel operations, leadership and AI. Explore past podcast appearances or invite me to join a future discussion.</p>
             {email && (
               <div className="actions">
                 <a href={`mailto:${email}?subject=Speaking%20invitation`} className="btn btn--primary">Invite me to speak</a>
               </div>
             )}
             {c.appearances.length > 0 && (
-              <div className="appearances">
-                <h3 className="panel__title">Recent appearances</h3>
-                {c.appearances.map((a) => (
-                  <div className="appearance" key={a.showName}>
-                    <span style={{ fontWeight: 600, color: "var(--navy)" }}>{a.showName}</span>
-                    {a.url ? <a href={a.url} className="plain-link" style={{ minHeight: 0 }}>{a.linkLabel}</a> : <span className="muted">{a.linkLabel}</span>}
-                  </div>
-                ))}
+              <div className="appearances" aria-label="Podcast appearances">
+                <h3 className="panel__title">Podcast appearances</h3>
+                {c.appearances.map((a) => {
+                  const poster = podcastThumbnail(a.url);
+                  return (
+                    <article className="appearance" key={a.url ?? a.showName}>
+                      {a.url && (
+                        <a
+                          href={a.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="appearance__media"
+                          style={poster ? { backgroundImage: `url("${poster}")` } : undefined}
+                          aria-label={`Watch ${a.showName} on YouTube (opens in a new tab)`}
+                        >
+                          <span className="appearance__play" aria-hidden="true">▶</span>
+                        </a>
+                      )}
+                      <div className="appearance__info">
+                        <span className="appearance__eyebrow">Guest conversation · Video podcast</span>
+                        <strong className="appearance__name">{a.showName}</strong>
+                        {a.url ? (
+                          <a href={a.url} target="_blank" rel="noopener noreferrer" className="text-link">
+                            {a.linkLabel} ↗
+                          </a>
+                        ) : (
+                          <span className="small muted">{a.linkLabel}</span>
+                        )}
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             )}
           </div>

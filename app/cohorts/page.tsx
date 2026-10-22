@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "./cohorts.css";
 import Link from "next/link";
 
 export const metadata: Metadata = {

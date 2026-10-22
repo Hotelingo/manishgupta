@@ -524,12 +524,13 @@ speakingTopics:
     title: "What hotels teach about operating discipline"
     text: "Daily P&L habits from hotels that any business can borrow."
 
-# Podcasts and interviews you have done. Shown under the speaking topics once
-# there is at least one. Example:
-#   - showName: "Show name"
-#     linkLabel: "Listen"
-#     url: "https://..."
-appearances: []
+# Public podcast / interview appearances. Most recent first.
+# To add another: copy the three lines below, change the title, link text and URL.
+# Only include public interviews you have already appeared in.
+appearances:
+  - showName: "Podcast conversation on YouTube"
+    linkLabel: "Watch the episode"
+    url: "https://www.youtube.com/watch?v=rK_r3lW3R-s"
 
 career:
   - period: "2025–now"

@@ -194,12 +194,13 @@ export default async function HomePage() {
                     <span className="small muted">
                       {k.nextCohort ? <>Next cohort <strong>{k.nextCohort}</strong></> : "Dates to be announced"}
                     </span>
-                    <a href="#notes" className="text-link text-link--tight">Join the waitlist →</a>
+                    <a href="/cohorts#interest" className="text-link text-link--tight">Register interest →</a>
                   </div>
                 </div>
               </article>
             ))}
           </div>
+          <Link href="/cohorts" className="btn btn--gold" style={{alignSelf:"flex-start"}}>Explore all live cohorts & prices →</Link>
         </div>
       </section>
 

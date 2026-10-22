@@ -1,0 +1,19 @@
+
+/* Cohort pre-registration and course interest page */
+.cohort-format-grid,.cohort-track-grid,.cohort-other-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.cohort-format,.cohort-track{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:15px}
+.cohort-format p,.cohort-track p{line-height:1.55}
+.cohort-price{font-family:var(--font-display);font-size:44px;font-weight:600;color:var(--navy)}
+.cohort-price span{font-family:var(--font-body,inherit);font-size:14px;font-weight:400;color:var(--muted)}
+.cohort-track-grid{gap:18px}
+.cohort-track{gap:16px}
+.cohort-track h3{color:var(--navy)}
+.cohort-track-section{border-top:1px solid var(--line);padding-top:14px}
+.cohort-track-section strong{color:var(--navy)}
+.cohort-track-section p{margin-top:6px;color:var(--body)}
+.cohort-outcomes{padding-left:20px;display:grid;gap:7px;color:var(--body)}
+.cohort-track-cta{align-self:flex-start;margin-top:auto}
+.cohort-other{background:var(--mist);border:1px solid var(--line);border-radius:10px;padding:22px;font-weight:600;color:var(--navy)}
+.cohort-form-wrap{background:var(--paper);padding:16px;border-radius:12px;border:1px solid var(--line);display:flex;flex-direction:column;gap:12px;max-width:850px;width:100%}
+.cohort-form{display:block;width:100%;min-height:1250px;border:0;background:#fff;border-radius:8px}
+@media(max-width:760px){.cohort-format-grid,.cohort-track-grid,.cohort-other-grid{grid-template-columns:1fr}.cohort-format,.cohort-track{padding:21px}.cohort-form-wrap{padding:8px}.cohort-form{min-height:1550px}}

@@ -14,7 +14,7 @@ export function SiteHeader() {
           <Link href="/#work">Work with me</Link>
           <Link href="/#library">Books</Link>
           <Link href="/courses">Courses</Link>
-          <Link href="/#cohorts">Cohorts</Link>
+          <Link href="/cohorts">Live cohorts</Link>
           <Link href="/#ai-lab">AI Lab</Link>
           <Link href="/about">About</Link>
           <Link href="/#notes" className="nav__cta">Monthly notes</Link>
@@ -38,7 +38,7 @@ export function SiteFooter({ content }: { content: SiteContent }) {
         <nav aria-label="Work">
           <span className="kicker">Work</span>
           <Link href="/courses">Courses</Link>
-          <Link href="/#cohorts">Cohorts</Link>
+          <Link href="/cohorts">Live cohorts</Link>
           <Link href="/#ai-lab">AI sessions</Link>
           <Link href="/#work">Mentoring and advisory</Link>
           <Link href="/#speaking">Speaking</Link>

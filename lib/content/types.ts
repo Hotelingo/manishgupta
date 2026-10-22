@@ -7,7 +7,7 @@ export type SessionStatus = "upcoming" | "recorded";
 export type ProofIcon = "years" | "book" | "award";
 export type WayStyle = "light" | "dark";
 export type CohortTheme = "teal" | "navy" | "wine" | "olive";
-export type CoursePlatform = "Udemy" | "Coursera" | "Alison";
+export type CoursePlatform = "Udemy" | "Coursera" | "Alison" | "MYCPE";
 
 export interface SiteSettings {
   heroEyebrow: string;

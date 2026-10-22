@@ -1,0 +1,17 @@
+/* Consulting and mentorship enquiry landing pages */
+.enquiry-hero .section { padding-block: 82px 76px; gap: 18px; }
+.enquiry-hero .lead { max-width: 730px; color: #d9e3f0; }
+.enquiry-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+.enquiry-card { display: flex; flex-direction: column; gap: 13px; padding: 26px; border-radius: 12px; background: var(--paper); border: 1px solid var(--line); }
+.enquiry-card h3 { font-family: var(--font-display); font-size: 26px; line-height: 1.2; font-weight: 600; color: var(--navy); }
+.enquiry-card p { color: var(--body); font-size: 15px; line-height: 1.58; }
+.enquiry-steps { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; padding-left: 0; list-style: none; }
+.enquiry-steps li { border-top: 2px solid var(--navy); padding-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+.enquiry-steps strong { color: var(--navy); font-size: 17px; }
+.enquiry-steps p { color: var(--body); line-height: 1.55; }
+.enquiry-form-shell { width: 100%; max-width: 820px; margin-inline: auto; padding: clamp(10px,3vw,28px); background: var(--paper); border: 1px solid var(--line); border-radius: 12px; display: flex; flex-direction: column; gap: 14px; box-sizing: border-box; }
+.enquiry-form-frame { width: 100%; height: 760px; border: 0; border-radius: 8px; background: #fff; display: block; }
+.enquiry-form-note { line-height: 1.55; }
+.enquiry-callout { padding: 22px 28px; border-left: 3px solid var(--gold); background: var(--mist); border-radius: 0 10px 10px 0; max-width: 760px; }
+.enquiry-callout p { color: var(--body); line-height: 1.6; }
+@media(max-width:780px){.enquiry-grid,.enquiry-steps{grid-template-columns:1fr}.enquiry-hero .section{padding-block:56px;}.enquiry-card{padding:22px}.enquiry-form-shell{padding:10px}.enquiry-form-frame{height:680px}}
